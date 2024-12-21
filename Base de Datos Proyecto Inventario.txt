@@ -1,0 +1,49 @@
+New Tables
+usuarios - Gestión de usuarios del sistema
+id (uuid, primary key)
+email (text, unique)
+nombre (text)
+apellido (text)
+rol (text) - admin, supervisor, operador
+activo (boolean)
+foto_url (text, nullable)
+ultimo_acceso (timestamptz)
+configuracion - Configuración general del sistema
+id (uuid, primary key)
+nombre_empresa (text)
+logo_url (text)
+tema_claro (jsonb) - colores personalizados
+tema_oscuro (jsonb) - colores personalizados
+productos - Catálogo de productos
+id (uuid, primary key)
+codigo_barra (text, unique)
+nombre (text)
+descripcion (text)
+categoria (text)
+minimo_stock (integer)
+created_at (timestamptz)
+updated_at (timestamptz)
+ubicaciones - Gestión de ubicaciones físicas
+id (uuid, primary key)
+estante (text)
+seccion (text)
+nivel (text)
+descripcion (text)
+inventario - Control de stock
+id (uuid, primary key)
+producto_id (uuid, references productos)
+ubicacion_id (uuid, references ubicaciones)
+cantidad (integer)
+lote (text)
+fecha_vencimiento (date, nullable)
+movimientos - Registro de movimientos
+id (uuid, primary key)
+producto_id (uuid, references productos)
+usuario_id (uuid, references usuarios)
+tipo (text) - entrada, salida, ajuste
+cantidad (integer)
+nota (text)
+created_at (timestamptz)
+Security
+RLS habilitado en todas las tablas
+Políticas basadas en rol de usuario
